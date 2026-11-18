@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bughunter"
+version = "1.10.0"
+description = "Internal web-application vulnerability assessment platform"
+requires-python = ">=3.9"
+dependencies = []          # stdlib only
+
+[project.optional-dependencies]
+extras = ["requests>=2.28", "PyYAML>=6.0"]
+
+[project.scripts]
+bughunter = "bughunter.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["bughunter*"]

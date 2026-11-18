@@ -1,0 +1,123 @@
+{
+  "timeout": 12.0,
+  "verify_tls": true,
+  "threads": 20,
+  "rate_limit": 0.0,
+  "user_agent": "BugHunter/0.1 (+internal security testing)",
+  "extra_headers": {},
+  "max_crawl_pages": 200,
+  "max_crawl_depth": 3,
+  "port_scan": true,
+  "ports": [
+    21,
+    22,
+    25,
+    53,
+    80,
+    110,
+    143,
+    443,
+    445,
+    3306,
+    3389,
+    5432,
+    6379,
+    8000,
+    8080,
+    8443,
+    8888,
+    9200,
+    27017
+  ],
+  "subdomain_enum": true,
+  "content_discovery": true,
+  "wordlist": "",
+  "active_scan": true,
+  "deep_blind": false,
+  "use_external_tools": true,
+  "evasion_mutators": [],
+  "detect_waf": true,
+  "use_oob": false,
+  "oob_host": "",
+  "use_memory": true,
+  "memory_path": "bughunter_memory.json",
+  "authz_sessions": [],
+  "authz_identities": [
+    {
+      "name": "alice",
+      "role": "user",
+      "headers": {
+        "Cookie": "SESSION=alice-session"
+      }
+    },
+    {
+      "name": "bob",
+      "role": "user",
+      "headers": {
+        "Cookie": "SESSION=bob-session"
+      }
+    },
+    {
+      "name": "admin",
+      "role": "admin",
+      "headers": {
+        "Cookie": "SESSION=admin-session"
+      }
+    }
+  ],
+  "authz_include_anon": true,
+  "session_headers": {},
+  "protected_url": "",
+  "logout_url": "",
+  "post_change_headers": {},
+  "login": {},
+  "use_browser_crawl": true,
+  "js_intel": true,
+  "max_js_files": 80,
+  "use_nuclei_engine": true,
+  "nuclei_templates_dir": "",
+  "nuclei_severity": [],
+  "nuclei_tags": [],
+  "nuclei_max_templates": 1500,
+  "use_sca": true,
+  "verify_findings": true,
+  "use_feeds": true,
+  "feeds_offline": false,
+  "feeds_dir": "",
+  "openapi_spec": "",
+  "identifier_header": {
+    "X-Bug-Bounty": "your-handle"
+  },
+  "use_llm_agent": false,
+  "notify_webhook": "",
+  "checks_enabled": [],
+  "checks_disabled": [],
+  "scope_only": true,
+  "block_private_ranges": true,
+  "max_rate_limit": 5.0,
+  "backoff_on_status": [
+    429,
+    503
+  ],
+  "respect_retry_after": true,
+  "max_requests": 0,
+  "cache_responses": true,
+  "parallel_checks": 8,
+  "max_findings_per_check": 50,
+  "register": {
+    "url": "https://app.example.com/signup",
+    "count": 2,
+    "login_url": "https://app.example.com/login",
+    "success": "Log out",
+    "address_template": "youraddr+bh{tag}@yourdomain.com",
+    "verify_url": "https://app.example.com/verify",
+    "verify_timeout": 90,
+    "email": {
+      "backend": "imap",
+      "imap_host": "imap.yourdomain.com",
+      "imap_user": "youraddr@yourdomain.com",
+      "imap_pass": "APP_PASSWORD",
+      "imap_port": 993
+    }
+  }
+}

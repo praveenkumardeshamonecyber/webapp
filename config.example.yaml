@@ -1,0 +1,39 @@
+# BugHunter configuration (YAML needs PyYAML; a .json file always works).
+# Every value shown is the default — delete what you don't need to change.
+
+# --- networking / politeness ---
+timeout: 12.0
+verify_tls: true          # set false for self-signed internal targets
+threads: 20
+rate_limit: 0.0           # seconds between requests per worker (raise to be gentle)
+user_agent: "BugHunter/0.1 (+internal security testing)"
+extra_headers:            # auth for logged-in scanning
+  # Cookie: "session=...; csrftoken=..."
+  # Authorization: "Bearer <token>"
+
+# --- recon ---
+subdomain_enum: true
+port_scan: true
+ports: [21, 22, 25, 53, 80, 110, 143, 443, 445, 3306, 3389, 5432, 6379, 8000, 8080, 8443, 8888, 9200, 27017]
+content_discovery: true
+wordlist: ""              # path to a custom wordlist (enables ffuf if installed)
+max_crawl_pages: 200
+max_crawl_depth: 3
+
+# --- scanning ---
+active_scan: true         # send probe payloads (authorised targets only!)
+use_external_tools: true  # call nuclei/nmap/subfinder/ffuf when present
+checks_enabled: []        # empty = all; or e.g. ["xss-reflected","sqli-error"]
+checks_disabled: []       # e.g. ["open-redirect"]
+
+# --- safety ---
+scope_only: true
+max_findings_per_check: 50
+
+# --- v0.3 additions ---
+detect_waf: true           # detect WAF and auto-enable evasion encodings
+use_memory: true           # learning memory (per-target, improves each run)
+memory_path: "bughunter_memory.json"
+use_oob: false             # blind-vuln out-of-band testing
+oob_host: ""               # host:port the target can reach your OOB listener at (VPS/tunnel)
+authz_sessions: []         # list of header dicts for 2+ users to test IDOR/BOLA horizontally

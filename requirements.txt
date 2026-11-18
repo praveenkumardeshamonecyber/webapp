@@ -1,0 +1,4 @@
+# BugHunter runs on the Python standard library alone — nothing here is required.
+# These are OPTIONAL quality-of-life upgrades the code will use if installed:
+requests>=2.28      # nicer HTTP handling (falls back to urllib)
+PyYAML>=6.0         # YAML config files (JSON config always works)
